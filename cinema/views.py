@@ -89,10 +89,9 @@ class MovieViewSet(viewsets.ModelViewSet):
         return MovieSerializer
     
     def get_permissions(self):
-        if self.action in ["list", "retrieve", "create"]:
+        if self.action in ["list", "retrieve"]:
             return [IsAdminOrIfAuthenticatedReadOnly()]
-        return [permission() for permission in self.permission_classes]
-
+        return super().get_permissions()
 
 class MovieSessionViewSet(viewsets.ModelViewSet):
     queryset = (

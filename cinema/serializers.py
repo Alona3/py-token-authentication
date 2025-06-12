@@ -143,7 +143,7 @@ class OrderListSerializer(OrderSerializer):
 
 class RegisterSerializer(serializers.ModelSerializer):
     email = serializers.EmailField(
-        required=False,
+        required=True,
         validators=[UniqueValidator(queryset=User.objects.all())],
     )
     password = serializers.CharField(write_only=True, required=True, validators=[validate_password], min_length=5)
